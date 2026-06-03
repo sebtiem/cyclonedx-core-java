@@ -69,10 +69,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -753,6 +750,8 @@ public class XmlParserTest
 
     @Test
     void validateShouldNotBeVulnerableToXxe() throws Exception {
+        //Exception messages are checked in the English locale.
+        Locale.setDefault(Locale.ENGLISH);
         final byte[] bomBytes;
         try (final InputStream bomInputStream = getClass().getResourceAsStream("/security/xxe-protection.xml")) {
             assertThat(bomInputStream).isNotNull();
